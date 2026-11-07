@@ -810,7 +810,7 @@ window.dash = (function () {
     if (paintMap) paintMap();
   }
   $$('.pm-tab').forEach((b) => b.addEventListener('click', () => setRace(b.dataset.race)));
-  $$('.pm-chip').forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
+  $$('.pm-chip[data-view]').forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
   $('#labels').addEventListener('change', (e) => { state.labels = e.target.checked; if (paintMap) paintMap(); });
 
   /* ---------- map ---------- */
