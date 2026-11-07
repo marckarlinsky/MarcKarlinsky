@@ -103,6 +103,10 @@
   .pm .pm-dash { display: inline-block; width: 22px; height: 0; border-top: 2px dashed var(--color-fg); vertical-align: middle; }
   .pm .pm-detail { border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-md); display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
   .pm .pm-dhead { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .pm .pm-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; }
+  .pm .pm-dlabel { margin: 0 0 4px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg-muted); }
+  .pm .pm-dtable tr.pm-tot td { border-top: 1px solid var(--color-border-line); font-weight: 600; color: var(--color-fg-muted); }
+  .pm .pm-detail { scroll-margin-top: 12px; }
   .pm .pm-dtable { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
   .pm .pm-dtable th { text-align: left; font-weight: 600; padding: 3px 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
   .pm .pm-dtable td { padding: 3px 0; }
@@ -355,23 +359,27 @@
         <div class="pm-detail" id="detail" data-source="metrics precincts">
           <p class="pm-muted" id="detail-empty">Select a precinct on the map or in the table. Click it again, press Escape, or click empty map space to clear.</p>
           <div id="detail-body" hidden>
+            <p class="pm-dlabel">Precinct detail</p>
             <div class="pm-dhead"><h3>Precinct <span data-draw="dv" data-from="metrics" data-col="id" data-fmt="txt">—</span>, Ward <span data-draw="dv" data-from="metrics" data-col="ward" data-fmt="i">—</span></h3><button type="button" class="pm-chip" id="clear-sel">Clear selection</button></div>
             <p class="pm-muted" id="detail-split" hidden>Split precinct. The 2026 District 4A votes below count only the 4A side. The Board president and 2024 figures cover the whole precinct.</p>
             <table class="pm-dtable">
               <thead><tr><th>2026 District 4A</th><th>Votes</th><th>Share</th></tr></thead>
               <tbody>
-                <tr><td>Zaccor</td><td data-draw="dv" data-from="precincts" data-col="zaccor" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="z_sh" data-fmt="p">—</td></tr>
-                <tr><td>Sherratt</td><td data-draw="dv" data-from="precincts" data-col="sherratt" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="s_sh" data-fmt="p">—</td></tr>
-                <tr><td>Alvarez</td><td data-draw="dv" data-from="precincts" data-col="alvarez" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="a_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--pm-z)"></i>Zaccor</td><td data-draw="dv" data-from="precincts" data-col="zaccor" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="z_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--pm-s)"></i>Sherratt</td><td data-draw="dv" data-from="precincts" data-col="sherratt" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="s_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--pm-a)"></i>Alvarez</td><td data-draw="dv" data-from="precincts" data-col="alvarez" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="a_sh" data-fmt="p">—</td></tr>
+                <tr class="pm-tot"><td>Total votes</td><td data-draw="dv" data-from="precincts" data-col="votes26" data-fmt="n">—</td><td></td></tr>
                 <tr class="pm-gap"><td>2026 Board president</td><td>Votes</td><td>Share</td></tr>
-                <tr><td>Biggs</td><td data-draw="dv" data-from="precincts" data-col="biggs" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="b_sh" data-fmt="p">—</td></tr>
-                <tr><td>Dominguez</td><td data-draw="dv" data-from="precincts" data-col="dominguez" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="d_sh" data-fmt="p">—</td></tr>
-                <tr><td>Henderson</td><td data-draw="dv" data-from="precincts" data-col="henderson" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="h_sh" data-fmt="p">—</td></tr>
-                <tr><td>Revuluri</td><td data-draw="dv" data-from="precincts" data-col="revuluri" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="v_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--pm-b)"></i>Biggs</td><td data-draw="dv" data-from="precincts" data-col="biggs" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="b_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--pm-d)"></i>Dominguez</td><td data-draw="dv" data-from="precincts" data-col="dominguez" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="d_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--color-fg-muted)"></i>Henderson</td><td data-draw="dv" data-from="precincts" data-col="henderson" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="h_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--color-fg-muted)"></i>Revuluri</td><td data-draw="dv" data-from="precincts" data-col="revuluri" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="v_sh" data-fmt="p">—</td></tr>
+                <tr class="pm-tot"><td>Total votes</td><td data-draw="dv" data-from="precincts" data-col="pres_votes" data-fmt="n">—</td><td></td></tr>
                 <tr class="pm-gap"><td>2024 District 4</td><td>Votes</td><td>Share</td></tr>
-                <tr><td>Zaccor</td><td data-draw="dv" data-from="precincts" data-col="zaccor24" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="z24_sh" data-fmt="p">—</td></tr>
-                <tr><td>Rosenfeld</td><td data-draw="dv" data-from="precincts" data-col="rosenfeld24" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="ro24_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--pm-z)"></i>Zaccor</td><td data-draw="dv" data-from="precincts" data-col="zaccor24" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="z24_sh" data-fmt="p">—</td></tr>
+                <tr><td><i class="pm-dot" style="background:var(--pm-r)"></i>Rosenfeld</td><td data-draw="dv" data-from="precincts" data-col="rosenfeld24" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="ro24_sh" data-fmt="p">—</td></tr>
                 <tr><td>Four others combined</td><td data-draw="dv" data-from="metrics" data-col="oth24" data-fmt="n">—</td><td data-draw="dv" data-from="metrics" data-col="oth24_sh" data-fmt="p">—</td></tr>
+                <tr class="pm-tot"><td>Total votes</td><td data-draw="dv" data-from="precincts" data-col="votes24" data-fmt="n">—</td><td></td></tr>
               </tbody>
             </table>
           </div>
@@ -788,6 +796,10 @@ window.dash = (function () {
     dash.draw('dv');
     dash.draw('rows');
     if (selectOnMap) selectOnMap();
+    if (!force) {
+      const d = document.getElementById('detail-body');
+      if (d && d.getBoundingClientRect().bottom > window.innerHeight) d.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
   }
   dash.draw('dv', (el) => {
     const m = state.sel ? rowsOf(el.dataset.from).find((r) => r.id === state.sel) : null;
@@ -804,7 +816,7 @@ window.dash = (function () {
   }
   function setView(view) {
     state.view = view;
-    $$('.pm-chip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
+    $$('.pm-chip[data-view]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
     $$('.pm-vw').forEach((v) => { v.hidden = v.dataset.view !== view; });
     dash.draw('lgbar');
     if (paintMap) paintMap();
